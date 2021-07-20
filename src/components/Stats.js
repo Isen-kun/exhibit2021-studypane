@@ -53,9 +53,6 @@ const Stats = () => {
     setSessionMinutes(cnt);
   }, [tasks, sessions, sessionMinutes]);
 
-  console.log(sessionDate);
-  console.log(sessionCounts);
-
   return (
     <div>
       <h3>Statistics of the user</h3>
@@ -64,7 +61,6 @@ const Stats = () => {
         <div className="taskchart">
           <h6>Tasks completed on date</h6>
           <Bar
-            
             data={{
               labels: Object.keys(taskCounts),
               datasets: [
@@ -84,7 +80,7 @@ const Stats = () => {
       ) : (
         <p>Complete Tasks to see your graph</p>
       )}
-      
+
       {Object.keys(sessionCounts).length > 0 ? (
         <div className="sessionchart">
           <h6>Deep Work Sessions completed on date</h6>
@@ -101,7 +97,7 @@ const Stats = () => {
               ],
             }}
           />
-        </div>  
+        </div>
       ) : (
         <p>Complete Sessions to see your graph</p>
       )}
