@@ -4,6 +4,7 @@ import useFirestoreStatsTasks from "../hooks/useFirestoreStatsTasks";
 import useFirestoreStatsSession from "../hooks/useFirestoreStatsSessions";
 import { convertTimestamp } from "convert-firebase-timestamp";
 import { Bar } from "react-chartjs-2";
+import "../styles/css/stats.css";
 
 const Stats = () => {
   const { currentUser } = useContext(AuthContext);
@@ -58,44 +59,53 @@ const Stats = () => {
   return (
     <div>
       <h3>Statistics of the user</h3>
-      <h6>Tasks completed on date</h6>
+      {/* <h6>Tasks completed on date</h6> */}
       {Object.keys(taskCounts).length > 0 ? (
-        <Bar
-          data={{
-            labels: Object.keys(taskCounts),
-            datasets: [
-              {
-                label: "Tasks",
-                data: Object.values(taskCounts),
-                backgroundColor: ["#c64d4d"],
-              },
-            ],
-          }}
-          // height={150}
-          // width={300}
-          // options={{ maintainAspectRatio: false }}
-        />
+        <div className="taskchart">
+          <h6>Tasks completed on date</h6>
+          <Bar
+            
+            data={{
+              labels: Object.keys(taskCounts),
+              datasets: [
+                {
+                  label: "Tasks",
+                  data: Object.values(taskCounts),
+                  backgroundColor: ["#c64d4d"],
+                  barThickness: 40,
+                },
+              ],
+            }}
+            // height={150}
+            // width={300}
+            // options={{ maintainAspectRatio: false }}
+          />
+        </div>
       ) : (
         <p>Complete Tasks to see your graph</p>
       )}
-      <h6>Deep Work Sessions completed on date</h6>
+      
       {Object.keys(sessionCounts).length > 0 ? (
-        <Bar
-          data={{
-            labels: Object.keys(sessionCounts),
-            datasets: [
-              {
-                label: "Deep Work Sessions",
-                data: Object.values(sessionCounts),
-                backgroundColor: ["#2de282"],
-              },
-            ],
-          }}
-        />
+        <div className="sessionchart">
+          <h6>Deep Work Sessions completed on date</h6>
+          <Bar
+            data={{
+              labels: Object.keys(sessionCounts),
+              datasets: [
+                {
+                  label: "Deep Work Sessions",
+                  data: Object.values(sessionCounts),
+                  backgroundColor: ["#2de282"],
+                  barThickness: 40,
+                },
+              ],
+            }}
+          />
+        </div>  
       ) : (
         <p>Complete Sessions to see your graph</p>
       )}
-      <h6>Total Deep Work minutes = {sessionMinutes}</h6>
+      {/* <h6>Total Deep Work minutes = {sessionMinutes}</h6> */}
     </div>
   );
 };

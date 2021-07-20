@@ -98,7 +98,7 @@ const OnTasks = ({ setDoneTasks }) => {
             setOpen(false);
           }}
         >
-          Close
+          <b>Close</b>
         </button>
         <TaskForm handleAddTask={handleAddTask} />
       </div>

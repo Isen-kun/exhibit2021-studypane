@@ -3,11 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Stats from "./Stats";
 import { projectFirestore, timestamp } from "../Firebase/config";
-
+import "../styles/css/stats.css";
+ 
 const Dashboard = () => {
   const { currentUser, signout, setProfile, roomId, setRoomId } =
     useContext(AuthContext);
-
+ 
   const [roomAdder, setRoomAdder] = useState(false);
   const [room, setRoom] = useState("");
   const [joinRoomModal, setJoinRoomModal] = useState(false);
@@ -17,11 +18,11 @@ const Dashboard = () => {
   const [editNick, setEditNick] = useState("");
   const [roomError, setRoomError] = useState(false);
   const history = useHistory();
-
+ 
   const handleLogOut = () => {
     signout();
   };
-
+ 
   const handleUpdateName = () => {
     if (nick === "") {
       setProfile(editNick);
@@ -29,13 +30,13 @@ const Dashboard = () => {
     } else {
       setProfile(nick);
     }
-
+ 
     setNick("");
     setEditNick("");
     setNickAdder(false);
     setNickEditAdder(false);
   };
-
+ 
   const handleAddRoom = () => {
     projectFirestore
       .collection("rooms")
@@ -57,7 +58,7 @@ const Dashboard = () => {
         history.push("/Onhome");
       });
   };
-
+ 
   const handleJoinRoom = async () => {
     const roomRef = projectFirestore.collection("rooms").doc(roomId);
     const doc = await roomRef.get();
@@ -69,13 +70,13 @@ const Dashboard = () => {
     }
     setJoinRoomModal(false);
   };
-
+ 
   useEffect(() => {
     if (currentUser === null) {
       history.push("/");
     }
   });
-
+ 
   return (
     <div>
       {currentUser && (
@@ -84,17 +85,18 @@ const Dashboard = () => {
           {currentUser.displayName ? (
             <div>
               <p>Nickname: {currentUser.displayName}</p>
-              <button onClick={() => setNickEditAdder(!nickEditAdder)}>
-                {nickEditAdder ? "Close" : "Edit nickname"}
-              </button>
+              <p>
+                <button className="dashbttn" onClick={() => setNickEditAdder(true)}>
+                  Edit nickname
+                </button>
+              </p>
             </div>
           ) : (
-            <button onClick={() => setNickAdder(!nickAdder)}>
-              {nickAdder ? "Close" : "Add a nickname"}
-            </button>
+            <button className="dashbttn" onClick={() => setNickAdder(true)}>Add a nickname</button>
           )}
           {nickAdder && (
-            <div>
+            <div className="dashmodal">
+              
               <input
                 type="text"
                 required
@@ -103,63 +105,64 @@ const Dashboard = () => {
                   setEditNick(e.target.value);
                 }}
               />
-              <button onClick={handleUpdateName}>Add</button>
+              <button  className="dashbttn" onClick={handleUpdateName}>Add</button>
+              <button className="dashbttn" onClick={() => setNickAdder(false)}>Close</button>
             </div>
           )}
           {nickEditAdder && (
-            <div>
-              <input
-                type="text"
-                required
-                value={editNick}
-                onChange={(e) => {
-                  setEditNick(e.target.value);
-                }}
-              />
-              <button onClick={handleUpdateName}>Save</button>
+            <div className="dashmodal">
+              <p>
+                <input
+                  placeholder="Enter your nickname"
+                  className="dashinput"
+                  type="text"
+                  required
+                  value={editNick}
+                  onChange={(e) => {
+                    setEditNick(e.target.value);
+                  }}
+                />
+                <button  className="dashbttn" onClick={handleUpdateName}>Save</button>
+              </p>
+              <p><button  className="dashbttn" onClick={() => setNickEditAdder(false)}>Close</button></p>
             </div>
           )}
           <p>Currently Signed in as: {currentUser.email}</p>
-          <button onClick={handleLogOut}>Logout</button>
-          {roomAdder ? (
-            <button onClick={() => setRoomAdder(!roomAdder)}>Close</button>
-          ) : (
-            <button onClick={() => setRoomAdder(!roomAdder)}>
-              Start a Room
-            </button>
-          )}
-          {roomAdder && (
-            <div>
-              <input
-                type="text"
-                required
-                value={room}
-                onChange={(e) => setRoom(e.target.value)}
-              />
-              <button onClick={handleAddRoom}>Add</button>
-            </div>
-          )}
-          {joinRoomModal ? (
-            <button onClick={() => setJoinRoomModal(!joinRoomModal)}>
-              Close
-            </button>
-          ) : (
-            <button onClick={() => setJoinRoomModal(!joinRoomModal)}>
-              Join a Room
-            </button>
-          )}
-          {joinRoomModal && (
-            <div>
-              <input
-                type="text"
-                required
-                value={roomId}
-                onChange={(e) => setRoomId(e.target.value)}
-              />
-              <button onClick={handleJoinRoom}>Join</button>
-            </div>
-          )}
-          {roomError && <p>Sorry no such rooms found, try creating one.</p>}
+          <div style={{textAlign:"center"}}>
+            
+            <button className="dashbttn" onClick={handleLogOut}>Logout</button>
+            <button className="dashbttn" onClick={() => {setRoomAdder(true);setJoinRoomModal(false)}}>Start a Room</button>
+            {roomAdder && (
+              <div className="dashmodal">
+                <button  className="dashbttn" onClick={() => setRoomAdder(false)}>Close</button>
+                <input
+                  placeholder="Name Your Room"
+                  type="text"
+                  className="dashinput"
+                  required
+                  value={room}
+                  onChange={(e) => setRoom(e.target.value)}
+                />
+                <button className="dashbttn" onClick={handleAddRoom}>Add</button>
+              </div>
+            )}
+ 
+            <button className="dashbttn" onClick={() => {setJoinRoomModal(true); setRoomAdder(false)}}>Join a Room</button>
+            {joinRoomModal && (
+              <div className="dashmodal">
+                <button className="dashbttn" onClick={() => setJoinRoomModal(false)}>Close</button>
+                <input
+                placeholder="Input Shared Code"
+                  type="text"
+                  required
+                  value={roomId}
+                  onChange={(e) => setRoomId(e.target.value)}
+                />
+                <button className="dashbttn" onClick={handleJoinRoom}>Join</button>
+              </div>
+            )}
+            {roomError && <p>Sorry no such rooms found, try creating one.</p>}
+          </div>
           <div>
             <Stats />
           </div>
@@ -168,5 +171,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
+ 
 export default Dashboard;

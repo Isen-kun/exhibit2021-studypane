@@ -109,14 +109,16 @@ const OnHome = () => {
           {confModal && (
             <div className="quitmodal">
               <p>Do you really want to exit the room?</p>
-              <button onClick={handleKill}>Yes</button>
-              <button
-                onClick={() => {
-                  setConfModal(false);
-                }}
-              >
-                No
-              </button>
+              <p>
+                <button className="dashbttn" onClick={handleKill}>Yes</button>
+                <button  className="dashbttn"
+                  onClick={() => {
+                    setConfModal(false);
+                  }}
+                >
+                  No
+                </button>
+              </p>
             </div>
           )}
 

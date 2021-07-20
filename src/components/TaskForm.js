@@ -17,7 +17,7 @@ const TaskForm = ({ handleAddTask }) => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit">Add the task</button>
+      <button className="dashbttn" type="submit"><b>Add the task</b></button>
     </form>
   );
 };

@@ -62,7 +62,7 @@ const Messaging = () => {
                 onChange={(e) => setFormValue(e.target.value)}
                 placeholder="Type your message here..."
               />
-              <button type="submit">Send</button>
+              <button className="bttn" type="submit"><b>Send</b></button>
             </form>
           </div>
         </div>
