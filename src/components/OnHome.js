@@ -130,7 +130,7 @@ const OnHome = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              viewBox="0 0 24 24"
+              viewBox="0 -1 24 24"
               fill="none"
               stroke="#000"
               strokeWidth="2.5"
@@ -191,10 +191,10 @@ const OnHome = () => {
                 text={roomId}
                 // onCopy={() => this.setState({ copied: true })}
               >
-                <button>Copy</button>
+                <button className="dashbttn">Copy</button>
               </CopyToClipboard>
               <div>
-                <button onClick={() => setShareModal(false)}>Close</button>
+                <button className="bttn" onClick={() => setShareModal(false)}>Close</button>
               </div>
             </div>
           )}
@@ -282,7 +282,8 @@ const OnHome = () => {
       </div>
 
       <div className={`credit credit-${theme}`}>
-        Copyright © <a className="td">TernaryDevs</a>
+        Developed by  <a href="https://github.com/Isen-kun/exhibit2021-studypane" target="_blank" className="td">TernaryDevs</a>
+        {/* Copyright © <a className="td">TernaryDevs</a> */}
       </div>
     </div>
   );

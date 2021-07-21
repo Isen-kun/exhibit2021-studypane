@@ -9,7 +9,7 @@ const useFirestoreTask = (CurrentUserID) => {
     if (CurrentUserID) {
       const unsub = projectFirestore
         .collection("tasks")
-        // .where("ownerId", "==", CurrentUserID)
+        .where("ownerId", "==", CurrentUserID)
         .orderBy("createdAt", "asc")
         .onSnapshot((snap) => {
           let documents = [];

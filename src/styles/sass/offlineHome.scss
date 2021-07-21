@@ -48,6 +48,15 @@ h1, h2, h3, h4{
     
 }
 
+button{
+    cursor: pointer;
+}
+
+// Onhome.input{
+//     border-style: none;
+//     border-bottom-style: groove;
+//     background: transparent;
+// }
 
 .wrapper{
     min-height: 100vh;
@@ -92,6 +101,7 @@ h1, h2, h3, h4{
     }
     .feather{
         stroke: #fff;
+        
     }
 
 }
@@ -165,6 +175,7 @@ h1, h2, h3, h4{
     grid-area:credit;
     text-align: center;
     margin: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .chatbttn{

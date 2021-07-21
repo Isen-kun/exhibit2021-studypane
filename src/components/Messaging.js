@@ -25,8 +25,7 @@ const Messaging = () => {
   };
   return (
     <div>
-      {/* <div>
-        <h6>Status reports</h6>
+{/*       
         {docs.map((message) => {
           if (message.type === "status" && message.roomId === roomId)
             return (
@@ -36,7 +35,7 @@ const Messaging = () => {
             );
           else return null;
         })}
-      </div> */}
+       */}
       <div>
         <div><p><h3 className="chatheader">Messages:</h3></p></div>
         
@@ -44,12 +43,16 @@ const Messaging = () => {
           {docs.map((message) => {
             const messageClass =
               message.ownerId === currentUser.uid ? "sent" : "recieved";
-            if (message.type === "message" && message.roomId === roomId)
+            if (message.type === "message" && message.roomId === roomId )
               return (
-                <div className={`xyzClass ${messageClass}`}>
-                  <p className="textsender"><b>{message.ownerName} said:</b></p>
-                  <p className="chattext">{message.text}</p>
-                </div>
+                <>
+                  <div className={`xyzClass ${messageClass}`}>
+                    <p className="textsender"><b>{message.ownerName} said:</b></p>
+                    <p className="chattext">{message.text}</p>
+                  </div>
+    
+        
+                </>
               );
             else return null;
           })}

@@ -8,6 +8,10 @@ h1, h2, h3, h4 {
   padding: 0.5em;
 }
 
+button {
+  cursor: pointer;
+}
+
 .wrapper {
   min-height: 100vh;
   display: block;
@@ -134,6 +138,7 @@ h1, h2, h3, h4 {
   grid-area: credit;
   text-align: center;
   margin: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .chatbttn {

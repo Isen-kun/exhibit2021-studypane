@@ -59,7 +59,7 @@ const Stats = () => {
       {/* <h6>Tasks completed on date</h6> */}
       {Object.keys(taskCounts).length > 0 ? (
         <div className="taskchart">
-          <h6>Tasks completed on date</h6>
+          <h6 style={{}}>Tasks completed on date</h6>
           <Bar
             data={{
               labels: Object.keys(taskCounts),

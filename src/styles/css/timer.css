@@ -1,5 +1,6 @@
 .timerinput {
   width: 1.5rem;
+  border-style: none;
   margin: 0.2rem;
   font-size: 1.2rem;
 }

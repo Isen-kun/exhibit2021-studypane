@@ -1,25 +1,4 @@
-.taskchart, .sessionchart{
-    
-    width: 60vh;
-    text-align:center;
-    float:center !important;
-    position: absolute;
-}
 
-.sessionchart{
-    margin-left:60%;
-}
-
-.taskchart{
-    margin-left: 10%;
-}
-
-canvas{
-    //background-color: white;
-    width:33vw !important;
-    height:40vh !important;
-    text-align: center;
-}
 
 .dashbttn{
    
@@ -30,49 +9,76 @@ canvas{
     border-radius: 12px;
 }
 
+.canvas{
+    width:80vw !important;
+    height:40vh !important;
+    background: white;
+
+}
+
+.dashinput{
+    font-size: 1.5rem;
+    margin: auto;
+    margin-top: 2rem;
+    width: 100%;
+    outline: 0;
+    border-style: none;
+    border-bottom-style: groove;
+    background: transparent;
+}
+
 .dashmodal{
     background-color: #f7f7f7 !important;
     box-shadow:0px  5px 15px 0px #888888;
     border-radius: 12px;
     position: fixed;
-    top: 20%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25vw;
-    height:21vh;
+    width: 80vw;
+    height:20vh;
     padding: 1rem;
 }
-// .dashmodal{
-//     //background-color: #ffff;
-//     background-color: aqua;
-//     //box-shadow:0px  5px 15px 0px #888888;
-//     border-radius: 12px;
-//     position: fixed;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     width: 21vw;
-//     height:19vh;
-//     padding: 1rem;
 
-// }
+@media screen and (min-width:780px){
+    .taskchart, .sessionchart{
+    
+        width: 40vw;
+        text-align:center;
+        //float:center !important;
+        position: absolute;
+    }
 
-// .dashmodal{
-//     border: 1px solid #000;
-//     position: fixed;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     width: 60vw;
-//     height:20vh;
-//     padding: 1rem;
-//     background-color: aqua;
-// }
+    .sessionchart{
+        margin-left:60%;
+    }
 
-// .dashinput{
-//     line-height: 1.5rem;
-// }
+    .taskchart{
+        margin-left: 10%;
+    }
 
-.dashbuttons{ 
-    float:center;
+    canvas{
+        //background-color: white;
+        width:33vw !important;
+        height:40vh !important;
+        text-align: center;
+        margin: 8px;
+        background: #f7f7f7;
+        border: .5px solid #000;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+    
+    .dashmodal{
+        background-color: #f7f7f7 !important;
+        box-shadow:0px  5px 15px 0px #888888;
+        border-radius: 12px;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20vw;
+        height:21vh;
+        padding: 1rem;
+    }
 }

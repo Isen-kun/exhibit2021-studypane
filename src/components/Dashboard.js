@@ -68,7 +68,7 @@ const Dashboard = () => {
     } else {
       history.push("/Onhome");
     }
-    setJoinRoomModal(false);
+    // setJoinRoomModal(false);
   };
  
   useEffect(() => {
@@ -84,7 +84,7 @@ const Dashboard = () => {
           <h1>Dashboard</h1>
           {currentUser.displayName ? (
             <div>
-              <p>Nickname: {currentUser.displayName}</p>
+              <p>Nickname: <b>{currentUser.displayName}</b></p>
               <p>
                 <button className="dashbttn" onClick={() => setNickEditAdder(true)}>
                   Edit nickname
@@ -122,46 +122,58 @@ const Dashboard = () => {
                     setEditNick(e.target.value);
                   }}
                 />
-                <button  className="dashbttn" onClick={handleUpdateName}>Save</button>
               </p>
-              <p><button  className="dashbttn" onClick={() => setNickEditAdder(false)}>Close</button></p>
+              <div>
+                <button  className="dashbttn" onClick={handleUpdateName}>Save</button>
+                <button  className="dashbttn" onClick={() => setNickEditAdder(false)}>Close</button></div>
             </div>
           )}
-          <p>Currently Signed in as: {currentUser.email}</p>
+          <p>Currently Signed in as: <b>{currentUser.email}</b></p>
           <div style={{textAlign:"center"}}>
             
             <button className="dashbttn" onClick={handleLogOut}>Logout</button>
             <button className="dashbttn" onClick={() => {setRoomAdder(true);setJoinRoomModal(false)}}>Start a Room</button>
             {roomAdder && (
               <div className="dashmodal">
-                <button  className="dashbttn" onClick={() => setRoomAdder(false)}>Close</button>
-                <input
-                  placeholder="Name Your Room"
-                  type="text"
-                  className="dashinput"
-                  required
-                  value={room}
-                  onChange={(e) => setRoom(e.target.value)}
-                />
-                <button className="dashbttn" onClick={handleAddRoom}>Add</button>
+                <div>
+                  <input
+                    placeholder="Name Your Room"
+                    type="text"
+                    className="dashinput"
+                    required
+                    value={room}
+                    onChange={(e) => setRoom(e.target.value)}
+                  />
+                  <div>
+                    <button className="dashbttn" onClick={handleAddRoom}>Add</button>
+                    <button  className="dashbttn" onClick={() => setRoomAdder(false)}>Close</button>
+                  </div>
+                </div>
               </div>
             )}
  
             <button className="dashbttn" onClick={() => {setJoinRoomModal(true); setRoomAdder(false)}}>Join a Room</button>
             {joinRoomModal && (
               <div className="dashmodal">
-                <button className="dashbttn" onClick={() => setJoinRoomModal(false)}>Close</button>
-                <input
-                placeholder="Input Shared Code"
-                  type="text"
-                  required
-                  value={roomId}
-                  onChange={(e) => setRoomId(e.target.value)}
-                />
-                <button className="dashbttn" onClick={handleJoinRoom}>Join</button>
+                <div>
+                  <input
+                    className="dashinput"
+                    placeholder="Input Shared Code"
+                    type="text"
+                    required
+                    value={roomId}
+                    onChange={(e) => setRoomId(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <button className="dashbttn" onClick={handleJoinRoom}>Join</button>
+                  <button className="dashbttn" onClick={() => setJoinRoomModal(false)}>Close</button>
+                </div>
+                {roomError && <p>Room not found, try creating one.</p>}
               </div>
+              
             )}
-            {roomError && <p>Sorry no such rooms found, try creating one.</p>}
+            {/* {roomError && <p>Sorry no such rooms found, try creating one.</p>} */}
           </div>
           <div>
             <Stats />

@@ -27,7 +27,7 @@ const ScribblePad = () => {
         style={{
           height: "100%",
           width: "99%",
-          minHeight: "20vh",
+          minHeight: "40vh",
           resize: "none",
           border: "none",
           outline: "none",
